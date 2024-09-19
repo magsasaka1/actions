@@ -31,10 +31,10 @@ export const GET = async (req: Request) => {
 
     const payload: ActionGetResponse = {
       type: 'action',
-      title: 'Donate SOL to Alice',
-      icon: 'https://ucarecdn.com/7aa46c85-08a4-4bc7-9376-88ec48bb1f43/-/preview/880x864/-/quality/smart/-/format/auto/',
+      title: 'Donate SOL to magsasaka',
+      icon: 'https://ucarecdn.com/6ae7b2c9-1a7b-4043-aadc-28ce4c93841d/WIDI1300.png',
       description:
-        'Cybersecurity Enthusiast | Support my research with a donation.',
+        'Blink Enthusiast | Support my blink adventure with a donation.',
       label: 'Transfer', // this value will be ignored since `links.actions` exists
       links: {
         actions: [
@@ -49,9 +49,9 @@ export const GET = async (req: Request) => {
                 required: true,
                 options: [
                   { label: '0.01', value: '0.01' },
+                  { label: '.1', value: '.1' },
+                  { label: '.5', value: '.5' },
                   { label: '1', value: '1' },
-                  { label: '5', value: '5' },
-                  { label: '10', value: '10' },
                 ],
               },
             ],
@@ -141,18 +141,18 @@ export const POST = async (req: Request) => {
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
         transaction,
-        message: `Sent ${amount} SOL to Alice: ${toPubkey.toBase58()}`,
+        message: `Sent ${amount} SOL to magsasaka: ${toPubkey.toBase58()}`,
         links: {
           next: {
             type: 'inline',
             action: {
               type: 'action',
-              icon: 'https://ucarecdn.com/7aa46c85-08a4-4bc7-9376-88ec48bb1f43/-/preview/880x864/-/quality/smart/-/format/auto/',
+              icon: 'https://ucarecdn.com/6ae7b2c9-1a7b-4043-aadc-28ce4c93841d/WIDI1300.png',
               label: 'Thank You!',
-              title: 'Donate SOL to Alice',
+              title: 'Donate SOL to magsasaka',
               disabled: true,
               description:
-                'Cybersecurity Enthusiast | Support my research with a donation.',
+                'Blink Enthusiast | Support my blink adventure with a donation.',
             },
           },
         },
@@ -177,7 +177,7 @@ export const POST = async (req: Request) => {
 
 function validatedQueryParams(requestUrl: URL) {
   let toPubkey: PublicKey = new PublicKey(
-    'FWXHZxDocgchBjADAxSuyPCVhh6fNLT7DUggabAsuz1y',
+    '3KKRKFF1dMFaV7gpfqiqu5NjcyYHHKkowKWvRnBfXMjh',
   );
   let amount: number = 0.1;
 

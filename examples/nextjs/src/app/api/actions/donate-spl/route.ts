@@ -16,7 +16,10 @@ import * as splToken from '@solana/spl-token';
 const SOLANA_MAINNET_USDC_PUBKEY =
   'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 
-const headers = createActionHeaders();
+  const headers = createActionHeaders({
+    chainId: 'mainnet',
+    actionVersion: '2.2.1',
+  });
 
 export const GET = async (req: Request) => {
   try {
@@ -30,24 +33,24 @@ export const GET = async (req: Request) => {
 
     const payload: ActionGetResponse = {
       type: 'action',
-      title: 'Donate USDC-SPL to Alice',
-      icon: 'https://ucarecdn.com/7aa46c85-08a4-4bc7-9376-88ec48bb1f43/-/preview/880x864/-/quality/smart/-/format/auto/',
+      title: 'Donate USDC-SPL to magsasaka',
+      icon: 'https://ucarecdn.com/6ae7b2c9-1a7b-4043-aadc-28ce4c93841d/WIDI1300.png',
       description:
-        'Cybersecurity Enthusiast | Support my research with a donation.',
+        'Blink Enthusiast | Support my blink adventure with a donation.',
       label: 'Donate', // this value will be ignored since `links.actions` exists
       links: {
         actions: [
           {
+            label: 'Send 1 USDC', // button text
+            href: `${baseHref}&amount=${'1'}`,
+          },
+          {
+            label: 'Send 5 USDC', // button text
+            href: `${baseHref}&amount=${'5'}`,
+          },
+          {
             label: 'Send 10 USDC', // button text
             href: `${baseHref}&amount=${'10'}`,
-          },
-          {
-            label: 'Send 50 USDC', // button text
-            href: `${baseHref}&amount=${'50'}`,
-          },
-          {
-            label: 'Send 100 USDC', // button text
-            href: `${baseHref}&amount=${'100'}`,
           },
           {
             label: 'Send USDC', // button text
@@ -187,9 +190,9 @@ export const POST = async (req: Request) => {
 
 function validatedQueryParams(requestUrl: URL) {
   let toPubkey: PublicKey = new PublicKey(
-    'FWXHZxDocgchBjADAxSuyPCVhh6fNLT7DUggabAsuz1y',
+    '3KKRKFF1dMFaV7gpfqiqu5NjcyYHHKkowKWvRnBfXMjh',
   );
-  let amount: number = 10;
+  let amount: number = 1;
 
   try {
     if (requestUrl.searchParams.get('to')) {
