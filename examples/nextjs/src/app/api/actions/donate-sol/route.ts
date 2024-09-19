@@ -28,24 +28,24 @@ export const GET = async (req: Request) => {
 
     const payload: ActionGetResponse = {
       type: 'action',
-      title: 'Donate SOL to Alice',
-      icon: 'https://ucarecdn.com/7aa46c85-08a4-4bc7-9376-88ec48bb1f43/-/preview/880x864/-/quality/smart/-/format/auto/',
+      title: 'Donate SOL to magsasaka',
+      icon: 'https://ucarecdn.com/6ae7b2c9-1a7b-4043-aadc-28ce4c93841d/WIDI1300.png',
       description:
-        'Cybersecurity Enthusiast | Support my research with a donation.',
+        'Blink Enthusiast | Support my blink adventure with a donation.',
       label: 'Transfer', // this value will be ignored since `links.actions` exists
       links: {
         actions: [
           {
+            label: 'Send .1 SOL', // button text
+            href: `${baseHref}&amount=${'.1'}`,
+          },
+          {
+            label: 'Send .5 SOL', // button text
+            href: `${baseHref}&amount=${'.5'}`,
+          },
+          {
             label: 'Send 1 SOL', // button text
             href: `${baseHref}&amount=${'1'}`,
-          },
-          {
-            label: 'Send 5 SOL', // button text
-            href: `${baseHref}&amount=${'5'}`,
-          },
-          {
-            label: 'Send 10 SOL', // button text
-            href: `${baseHref}&amount=${'10'}`,
           },
           {
             label: 'Send SOL', // button text
@@ -165,7 +165,7 @@ export const POST = async (req: Request) => {
 
 function validatedQueryParams(requestUrl: URL) {
   let toPubkey: PublicKey = new PublicKey(
-    'FWXHZxDocgchBjADAxSuyPCVhh6fNLT7DUggabAsuz1y',
+    '3KKRKFF1dMFaV7gpfqiqu5NjcyYHHKkowKWvRnBfXMjh',
   );
   let amount: number = 0.1;
 
