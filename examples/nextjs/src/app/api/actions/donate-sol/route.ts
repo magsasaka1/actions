@@ -14,7 +14,11 @@ import {
   Transaction,
 } from '@solana/web3.js';
 
-const headers = createActionHeaders();
+const headers = createActionHeaders({
+  chainId: "mainnet", // or chainId: "devnet"
+  actionVersion: "2.2.1", // the desired spec version
+});
+
 
 export const GET = async (req: Request) => {
   try {
