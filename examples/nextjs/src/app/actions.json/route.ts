@@ -6,8 +6,8 @@ export const GET = async () => {
     rules: [
       // Map specific Blink for donate-sol
       {
-        pathPattern: "/blink/donate-sol/*",
-        apiPath: "/api/actions/donate-sol/*",
+        pathPattern: "/blink/donate-sol",
+        apiPath: "/api/actions/donate-sol",
       },
       // // Map all root-level routes to an action
       // {
