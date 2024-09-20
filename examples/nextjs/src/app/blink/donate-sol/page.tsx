@@ -13,7 +13,7 @@ const DonateSolPage = () => {
   const [action, setAction] = useState<Action | null>(null);
   const [mounted, setMounted] = useState(false); // Track when the component is mounted
 
-  const actionApiUrl = "https://actions.magsasaka.fun/api/donate-sol";
+  const actionApiUrl = "https://actions.magsasaka.fun/api/actions/donate-sol";
   const { adapter } = useActionSolanaWalletAdapter(connection);
 
   useEffect(() => {
