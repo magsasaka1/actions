@@ -6,19 +6,19 @@ export const GET = async () => {
     rules: [
       // Map specific Blink for donate-sol
       {
-        pathPattern: "/blink/donate-sol",
-        apiPath: "/api/donate-sol",
+        pathPattern: "/blink/donate-sol/*",
+        apiPath: "/api/actions/donate-sol/*",
       },
-      // Map all root-level routes to an action
-      {
-        pathPattern: "/*",
-        apiPath: "/api/actions/*",
-      },
-      // Fallback rule for idempotent paths
-      {
-        pathPattern: "/api/actions/**",
-        apiPath: "/api/actions/**",
-      },
+      // // Map all root-level routes to an action
+      // {
+      //   pathPattern: "/*",
+      //   apiPath: "/api/actions/*",
+      // },
+      // // Fallback rule for idempotent paths
+      // {
+      //   pathPattern: "/api/actions/**",
+      //   apiPath: "/api/actions/**",
+      // },
     ],
   };
 
