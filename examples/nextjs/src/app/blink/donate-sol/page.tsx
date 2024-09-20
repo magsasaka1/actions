@@ -5,20 +5,19 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useActionSolanaWalletAdapter } from "@dialectlabs/blinks/hooks/solana";
 import { Blink, Action } from "@dialectlabs/blinks";
-import Head from "next/head"; // Import Head for metadata
+import Head from "next/head";
 
 const DonateSolPage = () => {
   const { publicKey } = useWallet();
   const { connection } = useConnection();
   const [action, setAction] = useState<Action | null>(null);
-  const [mounted, setMounted] = useState(false); // Track when the component is mounted
+  const [mounted, setMounted] = useState(false);
 
   const actionApiUrl = "https://actions.magsasaka.fun/api/actions/donate-sol";
   const { adapter } = useActionSolanaWalletAdapter(connection);
 
-  // Ensure component only renders client-side features after mount
   useEffect(() => {
-    setMounted(true);
+    setMounted(true); // Ensure that client-side-only logic runs after mounting
   }, []);
 
   useEffect(() => {
@@ -40,9 +39,10 @@ const DonateSolPage = () => {
   return (
     <>
       <Head>
-        {/* Open Graph Meta Tags */}
-        <title>Donate SOL to magsasaka</title>
-        <meta property="og:title" content="Donate SOL to magsasaka" />
+        {/* Open Graph Meta Tags for this specific page */}
+        <title>Donate SOL to Magsasaka</title>
+        <meta name="description" content="Blink Enthusiast | Support my blink adventure with a donation." />
+        <meta property="og:title" content="Donate SOL to Magsasaka" />
         <meta property="og:description" content="Blink Enthusiast | Support my blink adventure with a donation." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://actions.magsasaka.fun/blink/donate-sol" />
@@ -61,10 +61,10 @@ const DonateSolPage = () => {
       <main className="flex flex-col items-center justify-center min-h-screen p-4">
         <h1 className="text-2xl font-bold mb-4">Donate SOL</h1>
 
-        {/* Conditionally render WalletMultiButton after component has mounted */}
-        {mounted ? <WalletMultiButton /> : null}
+        {/* Wallet connection button, only rendered after mounting */}
+        {mounted && <WalletMultiButton />}
 
-        {/* Conditionally render Blink if the wallet is connected and action is ready */}
+        {/* Render Blink if the wallet is connected and action is ready */}
         {mounted && publicKey && action ? (
           <div className="mt-6">
             <Blink action={action} websiteText={new URL(actionApiUrl).hostname} />
