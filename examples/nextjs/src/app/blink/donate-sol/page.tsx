@@ -5,7 +5,7 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useActionSolanaWalletAdapter } from "@dialectlabs/blinks/hooks/solana";
 import { Blink, Action } from "@dialectlabs/blinks";
-import Head from "next/head";  // Import Head for meta tags
+import Head from "next/head"; // Import Head for metadata
 
 const DonateSolPage = () => {
   const { publicKey } = useWallet();
@@ -15,6 +15,11 @@ const DonateSolPage = () => {
 
   const actionApiUrl = "https://actions.magsasaka.fun/api/actions/donate-sol";
   const { adapter } = useActionSolanaWalletAdapter(connection);
+
+  // Ensure component only renders client-side features after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const fetchAction = async () => {
@@ -27,20 +32,10 @@ const DonateSolPage = () => {
       }
     };
 
-    if (adapter) {
+    if (adapter && mounted) {
       fetchAction();
     }
-  }, [adapter]);
-
-  // Set the mounted state to true when the component has mounted
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // Do not render anything until the component has mounted on the client-side
-    return null;
-  }
+  }, [adapter, mounted]);
 
   return (
     <>
@@ -62,14 +57,15 @@ const DonateSolPage = () => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Magsasaka Blink Adventure Icon" />
       </Head>
+
       <main className="flex flex-col items-center justify-center min-h-screen p-4">
         <h1 className="text-2xl font-bold mb-4">Donate SOL</h1>
 
-        {/* Wallet connection button, only rendered after mounting */}
-        <WalletMultiButton />
+        {/* Conditionally render WalletMultiButton after component has mounted */}
+        {mounted ? <WalletMultiButton /> : null}
 
-        {/* Render Blink if the wallet is connected and the action is ready */}
-        {publicKey && action ? (
+        {/* Conditionally render Blink if the wallet is connected and action is ready */}
+        {mounted && publicKey && action ? (
           <div className="mt-6">
             <Blink action={action} websiteText={new URL(actionApiUrl).hostname} />
           </div>
